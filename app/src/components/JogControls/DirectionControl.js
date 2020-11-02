@@ -3,28 +3,12 @@
 import * as React from 'react'
 
 import {
-  Flex,
   Box,
-  Text,
-  SPACING_1,
-  SPACING_2,
-  SPACING_4,
-  TEXT_ALIGN_LEFT,
-  DIRECTION_COLUMN,
   PrimaryBtn,
-  RadioGroup,
   Icon,
   HandleKeypress,
-  type KeypressHandler,
   type IconName,
-  FONT_SIZE_HEADER,
-  FONT_WEIGHT_SEMIBOLD,
-  FONT_SIZE_BODY_1,
   ALIGN_CENTER,
-  JUSTIFY_CENTER,
-  FONT_BODY_1_DARK,
-  FONT_HEADER_DARK,
-  ALIGN_STRETCH,
 } from '@opentrons/components'
 import { ControlContainer } from './ControlContainer'
 
@@ -141,12 +125,7 @@ export function DirectionControl(props: DirectionControlProps): React.Node {
           onPress: () => props.jog(axis, sign, props.stepSize),
         }))}
       >
-        <Box
-          display="grid"
-          gridGap={SPACING_1}
-          gridTemplateRows="repeat(2, [row] 3rem)"
-          gridTemplateColumns="repeat(3, [col] 3rem)"
-        >
+        <Box display="grid" gridTemplateColumns="repeat(3, [col] 3rem)">
           {controls.map(
             ({ bearing, gridRow, gridColumn, iconName, axis, sign }) => (
               <PrimaryBtn
@@ -156,8 +135,6 @@ export function DirectionControl(props: DirectionControlProps): React.Node {
                 height="2.5rem"
                 alignSelf={ALIGN_CENTER}
                 onClick={() => props.jog(axis, sign, props.stepSize)}
-                padding={SPACING_1}
-                {...{ gridRow, gridColumn }}
               >
                 <Icon name={iconName} />
               </PrimaryBtn>
