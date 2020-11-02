@@ -211,7 +211,10 @@ class PairedInstrumentContext(CommandPublisher):
         if location and isinstance(location, types.Location):
             if isinstance(location.labware, Labware):
                 tiprack = location.labware
-                target: Well = tiprack.next_tip(self.channels)  # type: ignore
+                primary_channels =\
+                    self._instruments[self._pair_policy.primary].channels
+                target: Well =\
+                    tiprack.next_tip(primary_channels)  # type: ignore
                 if not target:
                     raise OutOfTipsError
             elif isinstance(location.labware, Well):
